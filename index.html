@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
     <title>Document</title>
 </head>
 <body>
-    <form class="inputForm">
-    <input type="text" placeholder="search for a movie" class="search"/>
-    <input type="submit"/>
+    <form id="submit">
+        <input type="text" class="searchUpdate" placeholder="Search movie">
+        <button type="submit" class="searchBtn"><i class="fas fa-search"></i>
+        </button>
     </form>
-    <div class="movieBox"></div>
+    <div class="movieInfo"></div>
+    <div class="nominations"></div>
     <script src="index.js"></script>
 </body>
 </html>

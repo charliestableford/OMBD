@@ -3,10 +3,18 @@ const searchBtn = document.querySelector('.searchBtn');
 const nominationsUL = document.querySelector('.nominations');
 const movieList = document.querySelector('.movieInfo');
 const finished = document.querySelector('.banner');
+const count = document.querySelector('.count');
+const bottomModal = document.querySelector('.bottomModal');
+const clickable = document.querySelector('.clickable');
+const deactivate = document.querySelector('button');
+
 
 let nomArray = [];
+let newArr = [];
 let counter = 0;
 const key = `406fb5b1`;
+const title = `duck`;
+  
 
 function searchInputHandler(e) {
     e.preventDefault();
@@ -35,12 +43,11 @@ function display(results) {
 
     movieList.innerHTML = results.map(movie =>
         `<ul class="info">
-                    <li>${movie.Title} - ${movie.Year} <button class="nominate" value="${movie.imdbID}">Nominate</button></li>
-                </ul>`
+            <li><a href="#" class="clickable"><img src="${movie.Poster}" alt="${movie.Title} ${movie.Type} poster" class="poster"></a></li>
+            <li class="details">${movie.Title} - ${movie.Year} <br><button class="nominate hov" value="${movie.imdbID}">Nominate</button></li>
+         </ul>`
     ).join('');
 }
-
-// <li><img src="${movie.Poster}" alt="${movie.Title} ${movie.Type} poster"></li>
 
 // RENDER NOMINATIONS LIST
     async function renderNom(idMovie){ 
@@ -58,44 +65,72 @@ function display(results) {
             finished.classList.add("show");
         }
 
+        if(nomArray.length >=0 ){
+            console.log(counter++);
+            count.innerHTML = `<span class="icon" role="img" aria-label="trophy">🏆 ${counter}</span>`;
+        }
+
         nominationsUL.innerHTML = nomArray.map(nomSearch =>
-            `<div class="num"></div>
-            <ul class="NomUL">
-                <li>${nomSearch.Title} - ${nomSearch.Year} / ${nomSearch.imdbRating} <button class="remove" value="${nomSearch.imdbID}">Remove</button></li>
+            `<ul class="NomUL">
+                <li class="nomLi"><span class="icon" role="img" aria-label="trophy">🏆 </span>${nomSearch.Title} - ${nomSearch.Year} / ${nomSearch.imdbRating} <button class="remove hov" value="${nomSearch.imdbID}">Remove</button></li>
             </ul>`
         ).join('');
     }
  }
 
+
+ function showDetails(e){
+    console.log(e);
+     console.log('in');
+ }
+
 function nominate(e) {
     if (e.target.classList.contains('nominate')) {
         // getting the movie ID
-        let idMovie = e.target.getAttribute('value');
+        let idMovie = e.target.getAttribute('value' );
         e.target.disabled = true;
+        e.target.classList.add('opacity');
         renderNom(idMovie);
 
-        // addToLocalstorage(e.target.getAttribute('value'));
+        // addLocal(e.target.getAttribute('value'));
         // checkLocalStorage();
     }
 }
+function removal(e){
 
-function removeNom(e){
     if(e.target.classList.contains('remove')){
-        // console.log(e.target.getAttribute('value'));
+        removeLocal(e.target.getAttribute('value'));
+         console.log(counter--);
+        count.innerHTML = `${counter}`;
+
         let clicked = e.target.getAttribute('value');
-        delete nomArray.clicked;
-        // console.log('remove');
-        // console.log(nomArray);
-        console.log(nomArray);
-        // removeToLocalstorage(e.target.getAttribute('value'));
+
+        function isClicked(nomSearch) { 
+            return nomSearch.imdbID === `${clicked}`;
+          }
+          let match = nomArray.find(isClicked);
+          console.log(match);
+
+          if(match){
+              console.log('true');
+              e.target.classList.add('hide');
+          }
+         
+        // const newArr = nomArray.filter((item) => item!==clicked)
+        // console.log(newArr) 
     }
 }
 
+document.addEventListener('click',function(e){
+    console.log(e.target);
+    // if(e.target.)
+ });
 
-
+// clickable.addEventListener('click', showDetails);
+window.addEventListener('click', removal);
 window.addEventListener('click', nominate);
-window.addEventListener('click', removeNom);
 searchUpdate.addEventListener('keyup', searchInputHandler);
 searchBtn.addEventListener('click', searchInputHandler);
 
 
+ApiHandler(title);

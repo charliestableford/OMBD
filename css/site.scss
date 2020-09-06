@@ -2,6 +2,8 @@
     font-family: 'Playfair Display', serif;
 }
 
+
+
 $blue: #003ccc;
 $lightBlue: #03a8ed;
 $red: #dc0119;
@@ -138,8 +140,12 @@ button{
   }
 
   .noTitle{
-      margin: 5%;
-      background: $lightBlue;
+      margin-left: 16%;
+  }
+
+  footer{
+      text-align: center;
+      z-index: 5;
   }
 
 }

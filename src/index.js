@@ -14,6 +14,7 @@ let nomArray = [];
 // defining for local storage
 let nomItem;
 let counter = 0;
+
 const key = `406fb5b1`;
 const title = `duck`;
     
@@ -59,14 +60,16 @@ function display(results) {
         if (nomSearch.Response === "True") {
         // add the search result to the nomArray  
         nomArray.push(nomSearch);
+        res = init();
         //check each click, if there are more then 5 nominations then show banner
-        if(nomArray.length >= 5){
+        if(nomArray.length >= 5 ){
             finished.classList.add("show");
         }
         //start counter when the nomArray is larger than one
         if(nomArray.length >= 0 ){
+           total = res.length;
             console.log(counter++);
-            count.innerHTML = `<span class="icon" role="img" aria-label="trophy">🏆 ${counter}</span>`;
+            count.innerHTML = `<span class="icon" role="img" aria-label="trophy">🏆 ${total}</span>`;
         }
 
         nominationsUL.innerHTML = nomArray.map(nomSearch =>
@@ -90,38 +93,36 @@ function nominate(e) {
 
 function removal(e){
     if(e.target.classList.contains('remove')){
-        removeLocal(e.target.getAttribute('value'));
+        let movieID = e.target.getAttribute('value'); 
+        removeLocal(movieID);
          console.log(counter--);
-        count.innerHTML = `${counter}`;
+        //  res = init();
+        count.innerHTML = `${res.length}`;
         //disable button + opacity.
         e.target.disabled = true;
         e.target.classList.add('opacity');
 
-        let clicked = e.target.getAttribute('value');
-
-        // update nomArray - to not include the movie you removed.
-        const index = nomArray.findIndex(nomArray => nomArray.imdbID === `${clicked}`);
+        const index = nomArray.findIndex(nomArray => nomArray.imdbID === `${movieID}`);
         console.log(`this is ${index}`);
-
         nomArray.splice(index, 1);
     }
 }
 
 //LOCALSTORAGE
 function checkLocalStorage() {
-    let resultLS;
-    resultLS = init();
-    if (resultLS.length === 0) {
-        btnFav.classList.remove('enable');
+    let res;
+    res = init();
+    if (res.length === 0) {
+        console.log('nothing stored');
     } else {
-        // btnFav.classList.add('enable');
-        if(resultLS.length>= 5){
+        
+        if(res.length>= 5){
             finished.classList.add("show");
             clear.innerHTML = `You're back! Want to change your nominations?`
         }
-        count.innerHTML =  `<span class="icon" role="img" aria-label="trophy">🏆 ${resultLS.length}</span>`;
-        console.log('finally');
-        
+        console.log(counter++);
+        total = res.length;
+        count.innerHTML =  `<span class="icon" role="img" aria-label="trophy">🏆 ${total}</span>`;
     }
 }
 
@@ -143,7 +144,7 @@ return nomItem;
 }
 
 function removeLocal(movieID) {
-    nomItem = init();
+    // nomItem = init();
     nomItem.forEach((movie, index) => {
         if (movie === movieID) {
             nomItem.splice(index, 1);

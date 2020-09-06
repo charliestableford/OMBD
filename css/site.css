@@ -127,6 +127,10 @@
 }
 
 .wrapper .noTitle {
-  margin: 5%;
-  background: #03a8ed;
+  margin-left: 16%;
+}
+
+.wrapper footer {
+  text-align: center;
+  z-index: 5;
 }

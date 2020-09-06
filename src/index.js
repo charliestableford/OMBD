@@ -7,15 +7,12 @@ const movieList = document.querySelector('.movieInfo');
 const finished = document.querySelector('.banner');
 const count = document.querySelector('.count');
 const bottomModal = document.querySelector('.bottomModal');
-const clickable = document.querySelector('.clickable');
-const deactivate = document.querySelector('button');
 
 let nomArray = [];
-let newArr = [];
 let counter = 0;
 const key = `406fb5b1`;
 const title = `duck`;
-  
+    
 // INPUT SEARCH HANDLER
 function searchInputHandler(e) {
     e.preventDefault();
@@ -44,7 +41,7 @@ async function ApiHandler(title) {
 function display(results) {
     movieList.innerHTML = results.map(movie =>
         `<ul class="info">
-            <li><a href="#" class="clickable"><img src="${movie.Poster}" alt="${movie.Title} ${movie.Type} poster" class="poster"></a></li>
+            <li><img src="${movie.Poster}" alt="${movie.Title} ${movie.Type} poster" class="poster"></li>
             <li class="details">${movie.Title} - ${movie.Year} <br><button class="nominate hov" value="${movie.imdbID}">Nominate</button></li>
          </ul>`
     ).join('');
@@ -67,7 +64,7 @@ function display(results) {
         }
 
         //start counter when the nomArray is larger than one
-        if(nomArray.length >=0 ){
+        if(nomArray.length >= 0 ){
             console.log(counter++);
             count.innerHTML = `<span class="icon" role="img" aria-label="trophy">🏆 ${counter}</span>`;
         }
@@ -89,8 +86,8 @@ function nominate(e) {
         renderNom(idMovie);
     }
 }
-function removal(e){
 
+function removal(e){
     if(e.target.classList.contains('remove')){
         // removeLocal(e.target.getAttribute('value'));
          console.log(counter--);
@@ -109,12 +106,6 @@ function removal(e){
     }
 }
 
-document.addEventListener('click',function(e){
-    console.log(e.target);
-    // if(e.target.)
- });
-
-// clickable.addEventListener('click', showDetails);
 window.addEventListener('click', removal);
 window.addEventListener('click', nominate);
 searchUpdate.addEventListener('keyup', searchInputHandler);

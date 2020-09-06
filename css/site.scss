@@ -73,6 +73,24 @@ button{
     margin-bottom: 5%;
 }
 
+.movieInfo{
+    position: relative;
+    min-height: 380px;
+    max-height: 380px;
+}
+
+.nominations{
+    position: relative;
+    min-height: 380px;
+    max-height: 380px;
+}
+
+.remove{
+    // margin-left: 10px;
+    position: absolute;
+    right: 15%;
+}
+
 .nominate, .remove{
     background: $red;
     padding: 5px 15px 5px 15px;
@@ -81,8 +99,9 @@ button{
     margin-top: 10px;
 }
 
-.remove{
-    margin-left: 10px;
+.nominate{
+    position: absolute;
+    bottom: 20px;
 }
 
 .hov{

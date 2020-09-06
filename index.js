@@ -1,3 +1,5 @@
+
+// GLOBAL VARIABLES
 const searchUpdate = document.querySelector('.searchUpdate');
 const searchBtn = document.querySelector('.searchBtn');
 const nominationsUL = document.querySelector('.nominations');
@@ -8,20 +10,20 @@ const bottomModal = document.querySelector('.bottomModal');
 const clickable = document.querySelector('.clickable');
 const deactivate = document.querySelector('button');
 
-
 let nomArray = [];
 let newArr = [];
 let counter = 0;
 const key = `406fb5b1`;
 const title = `duck`;
   
-
+// INPUT SEARCH HANDLER
 function searchInputHandler(e) {
     e.preventDefault();
     const textSearch = searchUpdate.value;
     ApiHandler(textSearch);
 }
 
+// API CALL
 async function ApiHandler(title) {
     const response = await fetch(`https://www.omdbapi.com/?apikey=${key}&s=${title}`);
     const searching = await response.json();
@@ -40,7 +42,6 @@ async function ApiHandler(title) {
 
 // RENDER MOVIE RESULTS
 function display(results) {
-
     movieList.innerHTML = results.map(movie =>
         `<ul class="info">
             <li><a href="#" class="clickable"><img src="${movie.Poster}" alt="${movie.Title} ${movie.Type} poster" class="poster"></a></li>
@@ -65,6 +66,7 @@ function display(results) {
             finished.classList.add("show");
         }
 
+        //start counter when the nomArray is larger than one
         if(nomArray.length >=0 ){
             console.log(counter++);
             count.innerHTML = `<span class="icon" role="img" aria-label="trophy">🏆 ${counter}</span>`;
@@ -78,12 +80,6 @@ function display(results) {
     }
  }
 
-
- function showDetails(e){
-    console.log(e);
-     console.log('in');
- }
-
 function nominate(e) {
     if (e.target.classList.contains('nominate')) {
         // getting the movie ID
@@ -91,33 +87,25 @@ function nominate(e) {
         e.target.disabled = true;
         e.target.classList.add('opacity');
         renderNom(idMovie);
-
-        // addLocal(e.target.getAttribute('value'));
-        // checkLocalStorage();
     }
 }
 function removal(e){
 
     if(e.target.classList.contains('remove')){
-        removeLocal(e.target.getAttribute('value'));
+        // removeLocal(e.target.getAttribute('value'));
          console.log(counter--);
         count.innerHTML = `${counter}`;
+        //disable button + opacity.
+        e.target.disabled = true;
+        e.target.classList.add('opacity');
 
         let clicked = e.target.getAttribute('value');
 
-        function isClicked(nomSearch) { 
-            return nomSearch.imdbID === `${clicked}`;
-          }
-          let match = nomArray.find(isClicked);
-          console.log(match);
+        // update nomArray - to not include the movie you removed.
+        const index = nomArray.findIndex(nomArray => nomArray.imdbID === `${clicked}`);
+        console.log(`this is ${index}`);
 
-          if(match){
-              console.log('true');
-              e.target.classList.add('hide');
-          }
-         
-        // const newArr = nomArray.filter((item) => item!==clicked)
-        // console.log(newArr) 
+        nomArray.splice(index, 1);
     }
 }
 

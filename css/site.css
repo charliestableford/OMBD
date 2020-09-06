@@ -63,6 +63,23 @@
   margin-bottom: 5%;
 }
 
+.wrapper .movieInfo {
+  position: relative;
+  min-height: 380px;
+  max-height: 380px;
+}
+
+.wrapper .nominations {
+  position: relative;
+  min-height: 380px;
+  max-height: 380px;
+}
+
+.wrapper .remove {
+  position: absolute;
+  right: 15%;
+}
+
 .wrapper .nominate, .wrapper .remove {
   background: #dc0119;
   padding: 5px 15px 5px 15px;
@@ -71,8 +88,9 @@
   margin-top: 10px;
 }
 
-.wrapper .remove {
-  margin-left: 10px;
+.wrapper .nominate {
+  position: absolute;
+  bottom: 20px;
 }
 
 .wrapper .hov {

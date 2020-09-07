@@ -180,3 +180,29 @@
   text-align: center;
   margin-top: 20px;
 }
+
+@media (max-width: 414px) {
+  .poster {
+    min-width: 100px;
+    max-width: 100px;
+  }
+  .info {
+    flex: 0 0 0rem;
+    padding-left: 20px;
+  }
+  #submit > .searchBtn {
+    font-size: 17px;
+  }
+  .wrapper .remove {
+    position: relative;
+    float: left;
+    margin-left: -120px;
+    margin-top: 30px;
+  }
+  li {
+    font-size: 17px;
+  }
+  .NomUL {
+    margin-top: 40px;
+  }
+}

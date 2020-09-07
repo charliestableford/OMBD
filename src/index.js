@@ -6,9 +6,10 @@ const nominationsUL = document.querySelector('.nominations');
 const movieList = document.querySelector('.movieInfo');
 const finished = document.querySelector('.banner');
 const count = document.querySelector('.count');
-const bottomModal = document.querySelector('.bottomModal');
 const clear = document.querySelector('.clear');
 const clearnNom = document.querySelector('.clearNom');
+const smokeScreen = document.querySelector('.smokeScreen');
+const modal = document.querySelector('modal');
 
 let nomArray = [];
 // defining for local storage
@@ -46,7 +47,7 @@ async function ApiHandler(title) {
 function display(results) {
     movieList.innerHTML = results.map(movie =>
         `<ul class="info">
-            <li><img src="${movie.Poster}" alt="${movie.Title} ${movie.Type} poster" onerror="this.src='https://via.placeholder.com/200x250/0e1920.png?text=Sorry+no+image';" class="poster"></li>
+            <li><a href="#"><img src="${movie.Poster}" alt="${movie.Title} ${movie.Type} poster" onerror="this.src='https://via.placeholder.com/200x250/0e1920.png?text=Sorry+no+image';" class="poster"></a></li>
             <li class="details">${movie.Title} - ${movie.Year} <br><button class="nominate hov" value="${movie.imdbID}">Nominate</button></li>
          </ul>`
     ).join('');
@@ -62,8 +63,11 @@ function display(results) {
         nomArray.push(nomSearch);
         res = init();
         //check each click, if there are more then 5 nominations then show banner
-        if(nomArray.length >= 5 ){
+        if(res.length >= 5 ){
             finished.classList.add("show");
+            smokeScreen.classList.add("smokeScreen");
+            smokeScreen.classList.add("show");
+
         }
         //start counter when the nomArray is larger than one
         if(nomArray.length >= 0 ){
@@ -93,11 +97,12 @@ function nominate(e) {
 
 function removal(e){
     if(e.target.classList.contains('remove')){
+        e.target.parentNode.classList.add('shift');
         let movieID = e.target.getAttribute('value'); 
         removeLocal(movieID);
          console.log(counter--);
         //  res = init();
-        count.innerHTML = `${res.length}`;
+        count.innerHTML = `<span class="icon" role="img" aria-label="trophy">🏆 ${res.length}</span>`;
         //disable button + opacity.
         e.target.disabled = true;
         e.target.classList.add('opacity');
@@ -116,9 +121,12 @@ function checkLocalStorage() {
         console.log('nothing stored');
     } else {
         
-        if(res.length>= 5){
+        if(res.length >= 5){
             finished.classList.add("show");
-            clear.innerHTML = `You're back! Want to change your nominations?`
+            smokeScreen.classList.add("smokeScreen");
+            smokeScreen.classList.add("show");
+            // trans.classList.add("trans");
+            // clear.innerHTML = `You're back! Want to change your nominations?`
         }
         console.log(counter++);
         total = res.length;
@@ -160,6 +168,16 @@ function addToLocalstorage(movieID) {
     localStorage.setItem('nominated', JSON.stringify(nomItem));
 }
 
+function openModal(e) {
+    console.log(e);
+    if(e.target.classList.contains('poster')){
+        console.log('poster');
+    const btnViewMore = e.target.parentElement;
+    if (btnViewMore.classList.contains('view-more')) {
+        consultApiModal(btnViewMore.getAttribute("id"));
+    }
+}
+}
 document.addEventListener('DOMContentLoaded', checkLocalStorage);
 document.addEventListener('DOMContentLoaded', ApiHandler(title));
 window.addEventListener('click', removal);
@@ -167,4 +185,6 @@ window.addEventListener('click', nominate);
 searchUpdate.addEventListener('keyup', searchInputHandler);
 searchBtn.addEventListener('click', searchInputHandler);
 clearnNom.addEventListener('click', clearLocalStorage);
+window.addEventListener('click', openModal);
+
 

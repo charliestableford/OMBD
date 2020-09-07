@@ -1,10 +1,23 @@
 * {
   font-family: 'Playfair Display', serif;
+  box-sizing: border-box;
 }
 
 .wrapper .movieInfo {
   display: flex;
   overflow-x: scroll;
+}
+
+.wrapper .smokeScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  opacity: .5;
+  height: 100vh;
+  width: 100%;
+  z-index: 2;
+  display: none;
 }
 
 .wrapper li {
@@ -61,6 +74,7 @@
 .wrapper #submit {
   text-align: center;
   margin-bottom: 5%;
+  margin-top: 5%;
 }
 
 .wrapper .movieInfo {
@@ -73,6 +87,7 @@
   position: relative;
   min-height: 380px;
   max-height: 380px;
+  overflow-x: hidden;
 }
 
 .wrapper .remove {
@@ -112,6 +127,8 @@
   left: 0;
   padding: 0;
   border-radius: 50px 50px 0px 0px;
+  transition: 1s;
+  z-index: 2;
 }
 
 .wrapper .innerTxt {
@@ -120,17 +137,32 @@
 }
 
 .wrapper .count {
-  padding: 11px 20px 11px 20px;
-  border-radius: 100px;
   font-size: 25px;
-  z-index: 2;
+  z-index: 5;
 }
 
 .wrapper .noTitle {
   margin-left: 16%;
 }
 
-.wrapper footer {
+.wrapper .footer {
   text-align: center;
-  z-index: 5;
+  z-index: 10;
+}
+
+.wrapper .nomLi {
+  transition: 1s;
+}
+
+.wrapper .shift {
+  transform: translate(-1000px);
+}
+
+.wrapper .clearNom {
+  background: #003ccc;
+  color: white;
+  padding: 10px 20px 10px 20px;
+  border-radius: 100px;
+  text-align: center;
+  margin-top: 20px;
 }

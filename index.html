@@ -12,24 +12,23 @@
 </head>
 <body>
     <div class="wrapper">
+        <div class="smokeScreen"></div>
         <form id="submit">
             <input type="text" class="searchUpdate">
             <button type="submit" class="searchBtn"> <span class="icon" role="img" aria-label="magnifying glass">🔍</span>
             </button>
         </form>
-        <div class="movieInfo">
-            <div class="bottomModal"></div>
-        </div>
+        <div class="movieInfo"></div>
         <div class="nominations"></div>
         <div class="count"><span class="icon" role="img" aria-label="trophy">🏆</span> </div>
-        <div class="banner hide">
-            <div class="innerTxt">Thank you for contributing by Nominating! <br>You are out of votes!</div>
-            <div class="clear">
-                
-            </div><button class="clearNom">Clear previous nominations list</button>
-        </div>
-        <footer>
-            <p>This application was created by <a href="">Charlie Stableford</a> in <span>🇨🇦</span></p>
+        <div class="banner hide fromBtm">
+            <div class="innerTxt">Thank you for contributing by nominating! <br>You are out of votes!<br>
+                <button class="clearNom hov">Clear previous nominations list</button></div>
+            <div class="clear"></div>
+            </div>
+            <div class="modal"></div>
+        <footer class="footer">
+            <p>Created by <a href="#">Charlie Stableford</a> in <span role="img" aria-label="Canada flag">🇨🇦</span></p>
         </footer>
     </div>
     <script src="src/index.js"></script>

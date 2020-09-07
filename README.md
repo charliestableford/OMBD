@@ -1,5 +1,4 @@
-# OMBD
-## A OMBD-API Challenge<br><br>
+# OMBD App - Shopify Intern Application
 ## Hello Shopify team!
 ## App description
 

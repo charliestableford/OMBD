@@ -6,7 +6,7 @@ Thank you for viewing my application for a Shopify Intern(UX Development). I rec
 
 I am excited about Shopify because it is an inclusive environment that fosters learning, growth and mentorship! 
 
-My process for completing this was to start small, making sure that the functionality of the API calls worked manually, then I added in the search feature. After that I added a simple count feature before expanding to local storage. Once I added the local storage I combined the counting and local storage functionality. Then I added the bells and whistles!
+My process for completing this was to start small, making sure that the functionality of the API calls worked manually, then I added in the search feature. After that I added a simple count feature before expanding to local storage. Once I added the localStorage I combined the counting and localStorage functionality. Then I added the bells and whistles!
 
 ## App description 📝
 Technologies used: HTML, SCSS https://sass-lang.com/, Vanilla JS. 

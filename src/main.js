@@ -9,7 +9,8 @@ const count = document.querySelector('.count');
 const clear = document.querySelector('.clear');
 const clearnNom = document.querySelector('.clearNom');
 const smokeScreen = document.querySelector('.smokeScreen');
-const modal = document.querySelector('modal');
+const arrow = document.querySelector('.arrow');
+// const modal = document.querySelector('modal');
 
 let nomArray = [];
 // defining for local storage
@@ -22,8 +23,8 @@ const title = `duck`;
 // INPUT SEARCH HANDLER
 function searchInputHandler(e) {
     e.preventDefault();
-    const textSearch = searchUpdate.value;
-    ApiHandler(textSearch);
+    const inputSearch = searchUpdate.value;
+    ApiHandler(inputSearch);
 }
 
 // API CALL
@@ -34,7 +35,7 @@ async function ApiHandler(title) {
         // let search = [];
         // search.push(searching);
         console.log(searching.Search);
-        display(searching.Search);
+        renderMovies(searching.Search);
     } else {
         movieList.innerHTML = `
         <div class="noTitle">
@@ -44,7 +45,7 @@ async function ApiHandler(title) {
 }
 
 // RENDER MOVIE RESULTS
-function display(results) {
+function renderMovies(results) {
     movieList.innerHTML = results.map(movie =>
         `<ul class="info">
             <li><a href="#"><img src="${movie.Poster}" alt="${movie.Title} ${movie.Type} poster" onerror="this.src='https://via.placeholder.com/200x250/0e1920.png?text=Sorry+no+image';" class="poster"></a></li>
@@ -84,6 +85,7 @@ function display(results) {
     }
  }
 
+ // NOMINATE 
 function nominate(e) {
     if (e.target.classList.contains('nominate')) {
        let movieID = e.target.getAttribute('value'); 
@@ -95,6 +97,7 @@ function nominate(e) {
     }
 }
 
+// REMOVE NOMINATION 
 function removal(e){
     if(e.target.classList.contains('remove')){
         e.target.parentNode.classList.add('shift');
@@ -134,6 +137,7 @@ function checkLocalStorage() {
     }
 }
 
+// CLEAR LOCAL SO USER CAN NOMINATE AGAIN
 function clearLocalStorage(){
     localStorage.clear('nomination');
     location.reload();
@@ -151,6 +155,7 @@ function init() {
 return nomItem;
 }
 
+// REMOVING SINGLE FROM LOCAL
 function removeLocal(movieID) {
     // nomItem = init();
     nomItem.forEach((movie, index) => {
@@ -161,6 +166,7 @@ function removeLocal(movieID) {
     localStorage.setItem('nominated', JSON.stringify(nomItem));
 }
 
+// ADDING SINGLE TO LOCAL
 function addToLocalstorage(movieID) {
     nomItem = init();
     nomItem.push(movieID);
@@ -168,23 +174,40 @@ function addToLocalstorage(movieID) {
     localStorage.setItem('nominated', JSON.stringify(nomItem));
 }
 
-function openModal(e) {
-    console.log(e);
-    if(e.target.classList.contains('poster')){
-        console.log('poster');
-    const btnViewMore = e.target.parentElement;
-    if (btnViewMore.classList.contains('view-more')) {
-        consultApiModal(btnViewMore.getAttribute("id"));
+// function openModal(e) {
+//     console.log(e);
+//     if(e.target.classList.contains('poster')){
+//         console.log('poster');
+//     }
+// }
+
+Element.prototype.isOverflowing = function(){
+    return this.scrollWidth > this.clientWidth;
+   
+}
+
+function addArrow(){
+    setTimeout( function() {
+    if(movieList.isOverflowing()){
+        console.log('overflow');
+        arrow.innerHTML = `<i class="fas fa-arrow-right"></i>`;
+
+    } else {
+        console.log('not overflowing');
+        arrow.innerHTML = ``;
     }
+},500)
 }
-}
+ 
+
 document.addEventListener('DOMContentLoaded', checkLocalStorage);
 document.addEventListener('DOMContentLoaded', ApiHandler(title));
+document.addEventListener('DOMContentLoaded', addArrow);
 window.addEventListener('click', removal);
 window.addEventListener('click', nominate);
 searchUpdate.addEventListener('keyup', searchInputHandler);
 searchBtn.addEventListener('click', searchInputHandler);
 clearnNom.addEventListener('click', clearLocalStorage);
-window.addEventListener('click', openModal);
+// window.addEventListener('click', openModal);
 
 

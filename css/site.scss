@@ -14,15 +14,43 @@ $shadow: 10px 10px 20px 2px rgba(0,0,0,0.14);
 .wrapper{
     // margin: 5%;
 
+.flexWrap{
+	display: flex;
+	flex-wrap: wrap;
+    }
+
 .movieInfo{
+    width: 50%;
     display: flex;
-    // flex-wrap: wrap;
-    overflow-x: scroll;
-    position: relative;
-    min-height: 380px;
-    max-height: 380px;
+	flex-wrap: wrap;
+    // overflow-x: scroll;
+    // position: relative;
+    // min-height: 380px;
+    // max-height: 380px;
     background: whitesmoke;
 }
+
+.info{
+    flex: 1 0 4rem;
+}
+
+.nominations{
+    width: 50%;
+    // position: fixed;
+    // position: relative;
+    // min-height: 380px;
+    // max-height: 380px;
+    overflow-x: hidden;
+}
+
+.nomContainer{
+    position: fixed;
+}
+
+.searchBtn{
+    font-size: 20px;
+}
+
 
 .smokeScreen{
     position: absolute;
@@ -30,7 +58,7 @@ $shadow: 10px 10px 20px 2px rgba(0,0,0,0.14);
     left: 0;
     background: white;
     opacity: .5;
-    height: 100vh;
+    height: 200vh;
     width: 100%;
     z-index: 2;
     display: none;
@@ -59,6 +87,11 @@ li{
     max-width: 150px;
     border-radius: 10px;
     box-shadow:  $shadow;
+    transition: transform .2s ease-in-out;
+}
+
+.poster:hover{
+    transform: scale(1.05);
 }
 
 .searchUpdate{
@@ -66,6 +99,7 @@ li{
     height: 30px;
     border-radius: 100px;
     border: 1px solid black;
+    padding: 10px;
 }
 
 button{
@@ -89,21 +123,19 @@ button{
 
 #submit{
     text-align: center;
+    // padding: 100px;
+    // height: 100px;
     margin-bottom: 5%;
     margin-top: 5%;
-}
-
-.nominations{
-    position: relative;
-    min-height: 380px;
-    max-height: 380px;
-    overflow-x: hidden;
+    background: white;
+    // position: fixed;
+    width: 100%;
 }
 
 .remove{
-    // margin-left: 10px;
+    // margin-left: 20px;
     position: absolute;
-    right: 15%;
+    right: -100px;
 }
 
 .nominate, .remove{
@@ -114,10 +146,10 @@ button{
     margin-top: 10px;
 }
 
-.nominate{
-    position: absolute;
-    bottom: 20px;
-}
+// .nominate{
+//     position: absolute;
+//     bottom: 20px;
+// }
 
 .hov{
     cursor: pointer;
@@ -153,7 +185,10 @@ button{
   }
 
   .noTitle{
-      margin-left: 16%;
+    //   margin-left: 16%;
+      padding: 15%;
+      
+
   }
 
   .footer{
@@ -167,7 +202,7 @@ button{
   }
 
   .shift{
-    transform: translate(-2000px);
+    transform: translate(2000px);
   }
 
   .clearNom{
@@ -177,22 +212,6 @@ button{
       border-radius: 100px;
       text-align: center;
       margin-top: 20px;
-  }
-
-  .movieInfo.active {
-    background: rgba(255,255,255,0.3);
-    cursor: grabbing;
-    cursor: -webkit-grabbing;
-    transform: scale(1);
-  }
-
-  .arrow{
-      z-index: 4;
-      width: 97%;
-      text-align: right;
-      font-size: 20px;
-      margin-bottom: 20px;
-      cursor: pointer;
   }
 
 }

@@ -3,13 +3,33 @@
   box-sizing: border-box;
 }
 
-.wrapper .movieInfo {
+.wrapper .flexWrap {
   display: flex;
-  overflow-x: scroll;
-  position: relative;
-  min-height: 380px;
-  max-height: 380px;
+  flex-wrap: wrap;
+}
+
+.wrapper .movieInfo {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
   background: whitesmoke;
+}
+
+.wrapper .info {
+  flex: 1 0 4rem;
+}
+
+.wrapper .nominations {
+  width: 50%;
+  overflow-x: hidden;
+}
+
+.wrapper .nomContainer {
+  position: fixed;
+}
+
+.wrapper .searchBtn {
+  font-size: 20px;
 }
 
 .wrapper .smokeScreen {
@@ -18,7 +38,7 @@
   left: 0;
   background: white;
   opacity: .5;
-  height: 100vh;
+  height: 200vh;
   width: 100%;
   z-index: 2;
   display: none;
@@ -47,6 +67,11 @@
   max-width: 150px;
   border-radius: 10px;
   box-shadow: 10px 10px 20px 2px rgba(0, 0, 0, 0.14);
+  transition: transform .2s ease-in-out;
+}
+
+.wrapper .poster:hover {
+  transform: scale(1.05);
 }
 
 .wrapper .searchUpdate {
@@ -54,6 +79,7 @@
   height: 30px;
   border-radius: 100px;
   border: 1px solid black;
+  padding: 10px;
 }
 
 .wrapper button {
@@ -79,18 +105,13 @@
   text-align: center;
   margin-bottom: 5%;
   margin-top: 5%;
-}
-
-.wrapper .nominations {
-  position: relative;
-  min-height: 380px;
-  max-height: 380px;
-  overflow-x: hidden;
+  background: white;
+  width: 100%;
 }
 
 .wrapper .remove {
   position: absolute;
-  right: 15%;
+  right: -100px;
 }
 
 .wrapper .nominate, .wrapper .remove {
@@ -99,11 +120,6 @@
   border-radius: 100px;
   color: white;
   margin-top: 10px;
-}
-
-.wrapper .nominate {
-  position: absolute;
-  bottom: 20px;
 }
 
 .wrapper .hov {
@@ -140,7 +156,7 @@
 }
 
 .wrapper .noTitle {
-  margin-left: 16%;
+  padding: 15%;
 }
 
 .wrapper .footer {
@@ -153,7 +169,7 @@
 }
 
 .wrapper .shift {
-  transform: translate(-2000px);
+  transform: translate(2000px);
 }
 
 .wrapper .clearNom {
@@ -163,20 +179,4 @@
   border-radius: 100px;
   text-align: center;
   margin-top: 20px;
-}
-
-.wrapper .movieInfo.active {
-  background: rgba(255, 255, 255, 0.3);
-  cursor: grabbing;
-  cursor: -webkit-grabbing;
-  transform: scale(1);
-}
-
-.wrapper .arrow {
-  z-index: 4;
-  width: 97%;
-  text-align: right;
-  font-size: 20px;
-  margin-bottom: 20px;
-  cursor: pointer;
 }

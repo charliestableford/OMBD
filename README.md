@@ -9,6 +9,8 @@ Technologies used: HTML, SCSS https://sass-lang.com/, Vanilla JS.
 
 Placeholders for when there is no img file(N/A) associated with a movie being searched is from https://placeholder.com/
 
+The hosting for this website is piggy backing off of my portfolio and is done through Netlify.
+
 ## Usage
 
 ## https://www.charliestableford.com/ombdapi/index.html 🔗

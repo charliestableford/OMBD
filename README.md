@@ -3,7 +3,7 @@
 
 
 ## App description
-Technologies used: HTML, SCSS[https://sass-lang.com/], Vanilla JS. 
+Technologies used: HTML, SCSS (https://sass-lang.com/), Vanilla JS. 
 
 
 ## Screenshot of the app 

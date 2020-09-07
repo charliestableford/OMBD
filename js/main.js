@@ -206,7 +206,7 @@ function addArrow(){
     setTimeout( function() {
     if(movieList.isOverflowing()){
         console.log('overflow');
-        arrow.innerHTML = `<i class="fas fa-arrow-right"></i>`;
+        arrow.innerHTML = `<span class="icon" role="img" aria-label="hand pointing to the right">👉</span>`;
 
     } else {
         console.log('not overflowing');

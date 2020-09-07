@@ -63,7 +63,7 @@ li{
 
 .searchUpdate{
     width: 65%;
-    height: 20px;
+    height: 30px;
     border-radius: 100px;
     border: 1px solid black;
 }
@@ -80,7 +80,7 @@ button{
 }
 
 .icon{
-    font-size: 22px;
+    font-size: 30px;
 }
 
 .details{
@@ -192,6 +192,7 @@ button{
       text-align: right;
       font-size: 20px;
       margin-bottom: 20px;
+      cursor: pointer;
   }
 
 }

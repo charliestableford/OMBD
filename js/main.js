@@ -28,12 +28,28 @@ function searchInputHandler(e) {
 }
 
 // API CALL
+// async function ApiHandler(title) {
+//     const response =  fetch(`https://www.omdbapi.com/?apikey=${key}&s=${title}`)
+//     const data = await response.json()
+//     return data;
+// }
+//     function resData(data){
+//           if (data === "True") {
+//         console.log(data);
+//         renderMovies(data);
+//     } else {
+//         movieList.innerHTML = `
+//         <div class="noTitle">
+//         sorry we have nothing by that name!
+//         </div>`;
+//     }
+//     }
+  
+
 async function ApiHandler(title) {
     const response = await fetch(`https://www.omdbapi.com/?apikey=${key}&s=${title}`);
     const searching = await response.json();
     if (searching.Response === "True") {
-        // let search = [];
-        // search.push(searching);
         console.log(searching.Search);
         renderMovies(searching.Search);
     } else {
@@ -199,7 +215,6 @@ function addArrow(){
 },500)
 }
  
-
 document.addEventListener('DOMContentLoaded', checkLocalStorage);
 document.addEventListener('DOMContentLoaded', ApiHandler(title));
 document.addEventListener('DOMContentLoaded', addArrow);

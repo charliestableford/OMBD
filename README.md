@@ -1,12 +1,5 @@
-# OMBD App - Shopify Intern Application 📍
-## Hello Shopify team! 👋
-My name is Charlie Stableford (they/them) https://www.youtube.com/watch?v=DKWrk8NgCXM.
-
-Thank you for viewing my application for a Shopify Intern (UX Development). I recently completed a one year degree in Web Development and Interaction Design that has complimented my background in Fine Arts and Psychology. During this program I became obsessed with improving a user's experience through meaningful data and quick prototyping.
-
-I am excited about Shopify because it is an inclusive environment that fosters learning, growth and mentorship! 
-
-My process for completing this was to start small, making sure that the functionality of the API calls worked manually. Then I added in the search feature. After that I added a simple count feature before expanding to localStorage. Once I added the localStorage I combined the counting and localStorage functionality. Then I added the bells and whistles!
+# OMBD App 📍
+## Hello! 👋
 
 ## App description 📝
 Technologies used: HTML, SCSS https://sass-lang.com/, Vanilla JS. 
